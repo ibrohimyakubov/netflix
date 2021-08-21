@@ -1,0 +1,27 @@
+name: Music API CI
+
+on: [ push ]
+
+jobs:
+  run-tests:
+    services:
+      postgres:
+        image: postgres:9.6
+        env:
+          POSTGRES_DB: spotify_lesson
+          POSTGRES_USER: ibrohim
+          POSTGRES_PASSWORD: 123
+        ports:
+          - 5432:5432
+    runs-on: ubuntu-latest
+    env:
+      DJANGO_SETTINGS_MODULE: lesson.settings
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install Requirements
+        run: pip install -r requirements.txt
+      - name: Run Tests
+        run: pytest
