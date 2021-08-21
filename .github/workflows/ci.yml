@@ -1,4 +1,4 @@
-name: Music API CI
+name: Netflix API CI
 
 on: [ push ]
 
@@ -8,14 +8,14 @@ jobs:
       postgres:
         image: postgres:9.6
         env:
-          POSTGRES_DB: spotify_lesson
+          POSTGRES_DB: netflix
           POSTGRES_USER: ibrohim
           POSTGRES_PASSWORD: 123
         ports:
           - 5432:5432
     runs-on: ubuntu-latest
     env:
-      DJANGO_SETTINGS_MODULE: lesson.settings
+      DJANGO_SETTINGS_MODULE: Netflix.settings
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
